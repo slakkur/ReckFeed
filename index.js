@@ -363,6 +363,7 @@ bot.on('message', async message=> {
 						if (data) {
 							for(let i = 0; i < data.length; i++){
 								data2.push(data[i]);
+								console.log("test");
 								console.log(data2.toString());
 								for ( val of data2){
 									data2.forEach((val) => {
