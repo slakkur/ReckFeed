@@ -365,8 +365,8 @@ bot.on('message', async message=> {
 								data2.push(data[i]);
 								for ( val of data2){
 									data2.forEach((val) => {
-										console.log(`${data2}`);
 										if (val[15]){
+											console.log(`${val[15]}`);
 											//Check for range of kill in message
 											if (val[15].includes(phrase3)) {
 												var f4 = val[15].split(" ");
