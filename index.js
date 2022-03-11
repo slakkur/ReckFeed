@@ -349,6 +349,7 @@ bot.on('message', async message=> {
 								logDt = line.slice(20, 30);
 								console.log(`This is the logDate: ${logDt}`);
 								console.log(`This is the current date: ${todayRef}`);
+								console.log(`${line}`);
 						   }
 			 			});
 			 
@@ -366,7 +367,6 @@ bot.on('message', async message=> {
 								for ( val of data2){
 									data2.forEach((val) => {
 										if (val[15]){
-											console.log(`${val[15]}`);
 											//Check for range of kill in message
 											if (val[15].includes(phrase3)) {
 												var f4 = val[15].split(" ");
