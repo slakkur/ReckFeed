@@ -24,7 +24,7 @@ var readline = require('readline');
 const { createSecureServer } = require('http2');
 const { triggerAsyncId } = require('async_hooks');
 const { toASCII } = require('punycode');
-var phrase1 = ">) killed by ", phrase2 = "AdminLog started on ", phrase3 = "from", phrase4 = "Connected", phrase5 = "Disconnected";
+var phrase1 = ">) killed by ", phrase2 = "AdminLog started on ", phrase3 = "from", phrase4 = "connected", phrase5 = "disconnected";
 
 
 
