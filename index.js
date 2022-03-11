@@ -350,10 +350,10 @@ bot.on('message', async message=> {
 								console.log(`This is the logDate: ${logDt}`);
 								console.log(`This is the current date: ${todayRef}`);
 						   }
-						   if (line.includes(phase4, 0)) {
+						   if (line.includes(phrase4, 0)) {
 								console.log(`${line}`);
 						   }
-						   if (line.includes(phase5, 0)) {
+						   if (line.includes(phrase5, 0)) {
 								console.log(`${line}`);
 						   }
 			 			});
