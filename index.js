@@ -24,7 +24,7 @@ var readline = require('readline');
 const { createSecureServer } = require('http2');
 const { triggerAsyncId } = require('async_hooks');
 const { toASCII } = require('punycode');
-var phrase1 = ">) killed by ", phrase2 = "AdminLog started on ", phrase3 = "from";
+var phrase1 = ">) killed by ", phrase2 = "AdminLog started on ", phrase3 = "from", phrase4 = "Connected", phrase5 = "Disconnected";
 
 
 
@@ -349,6 +349,11 @@ bot.on('message', async message=> {
 								logDt = line.slice(20, 30);
 								console.log(`This is the logDate: ${logDt}`);
 								console.log(`This is the current date: ${todayRef}`);
+						   }
+						   if (line.includes(phase4, 0)) {
+								console.log(`${line}`);
+						   }
+						   if (line.includes(phase5, 0)) {
 								console.log(`${line}`);
 						   }
 			 			});
