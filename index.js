@@ -2,7 +2,7 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
-const PREFIX = '?'; // Prefix used to invoke commands
+const PREFIX = '!'; // Prefix used to invoke commands
 const TOKEN = process.env.TOKEN;
 const TOKEN2 = process.env.NitraToken;
 const servUser = process.env.ID2;
@@ -151,107 +151,6 @@ bot.on('message', async message=> {
 					message.channel.send(embed);
                 })
             })
-		break;
-
-		//Get LeaderBoard Stats
-		case 'KLB':
-				KillFeed.find({guildId: guildId}).sort([
-					['numKills', 'desc']
-				]).exec((err, killfeed) => {
-					if(err) console.log(err);
-					let embed = new Discord.MessageEmbed()
-					const attachment = new Discord.MessageAttachment('./images/crown.png', 'crown.png');
-					embed.setTitle('**__Most Kills Leaderboard__**')
-					.attachFiles(attachment)
-					embed.setThumbnail('attachment://crown.png')
-					let rank = '';
-					let userNames = '';
-    				let kills = '';
-					//let leaderboard = '';
-					//if there are no results
-					if (killfeed.length === 0){
-						embed.setColor("0xDD0000");
-						embed.addField('No data found')
-					} else if (killfeed.length < 10){
-						//Less than 10 results
-						embed.setColor(0xDD0000);
-						for (i = 0; i < killfeed.length; i++) {
-							userNames = (`${i + 1}` + '. ' + `${killfeed[i].gamerTag}`);
-							Pstats = (`Kills: ` + `${killfeed[i].numKills}` + `\ ` + `\ ` + `\ ` + ` | ` + `\ ` + `\ ` + `\ ` + `Longest Shot: ` + `${killfeed[i].longestShot}`);
-							embed.addField(userNames, Pstats);
-							//embed.addField('Kills', `${killfeed[i].numKills}`)
-							//embed.addField('${i + 1}. ${killfeed[i].gamerTag}', '**KILLS**: ${killfeed[i].numKills}');
-						}
-					} else {
-						//more than 10 results
-						embed.setColor(0xDD0000);
-						for (i = 0; i < 10; i++) {
-							//rank += `${i + 1}`;
-							userNames = (`${i + 1}` + '. ' + `${killfeed[i].gamerTag}`);
-							Pstats = (`Kills: ` + `${killfeed[i].numKills}` + `\ ` + `\ ` + `\ ` + ` | ` + `\ ` + `\ ` + `\ ` + `Longest Shot: ` + `${killfeed[i].longestShot}`);
-							embed.addField(userNames, Pstats);
-     						//kills += `${killfeed[i].numKills}`;
-							//leaderboard += (rank + '. ' + ' ' + ' ' + ' ' + userNames + ' ' + ' ' + ' ' + ' ' + kills + '\n');
-							//let member = message.guild.members.get(killfeed[i].userID)
-							//embed.addField('${i + 1}', `${killfeed[i].gamerTag}`, 'kills', `${killfeed[i].numKills}`)
-							//embed.addFields(
-							//{ name: `**Survivor**`, value: `${i + 1}. ${killfeed[i].gamerTag}`, inline: true},
-							//{ name: `**Kills**`, value: `${killfeed[i].numKills} \n`, inline: true},
-							//{ name: '\u200B', value: '\u200B' },
-							//)
-							//embed.addField('userNames', '**KILLS**: ${killfeed[i].numKills}');
-							//embed.addField(userNames, `Kills: ${killfeed[i].numKills}`);
-						}
-					}
-						//embed.setColor(0xDD0000);
-						//embed.addFields(
-							//{ name: 'Rank          Survivor          Kills', value: leaderboard},
-							//{ name: 'Rank', value: rank, inline: true },
-							//{ name: 'Survivor', value: userNames, inline: true },
-							//{ name: 'Kills', value: kills, inline: true },
-							//{ name: '\u200B', value: '\u200B' },
-						//);
-					message.channel.send(embed);
-				})
-		break;
-
-		//Get Longest Shot LeaderBoard Stats
-		case 'LONGLB':
-				KillFeed.find({guildId: guildId}).sort([
-					['longestShot', 'desc']
-				]).exec((err, killfeed) => {
-					if(err) console.log(err);
-					let embed = new Discord.MessageEmbed()
-					const attachment = new Discord.MessageAttachment('./images/crown.png', 'crown.png');
-					embed.setTitle('**__Longest Shot Leaderboard__**')
-					.attachFiles(attachment)
-					embed.setThumbnail('attachment://crown.png')
-					let rank = '';
-					let userNames = '';
-    				let kills = '';
-					//if there are no results
-					if (killfeed.length === 0){
-						embed.setColor("0xDD0000");
-						embed.addField('No data found')
-					} else if (killfeed.length < 10){
-						//Less than 10 results
-						embed.setColor(0xDD0000);
-						for (i = 0; i < killfeed.length; i++) {
-							userNames = (`${i + 1}` + '. ' + `${killfeed[i].gamerTag}`);
-							Pstats = (`Longest Shot: ` + `${killfeed[i].longestShot}` + `\ ` + `\ ` + `\ ` + ` | ` + `\ ` + `\ ` + `\ ` + `KD: ` + `${killfeed[i].kd}`);
-							embed.addField(userNames, Pstats);
-						}
-					} else {
-						//more than 10 results
-						embed.setColor(0xDD0000);
-						for (i = 0; i < 10; i++) {
-							userNames = (`${i + 1}` + '. ' + `${killfeed[i].gamerTag}`);
-							Pstats = (`Longest Shot: ` + `${killfeed[i].longestShot}` + `\ ` + `\ ` + `\ ` + ` | ` + `\ ` + `\ ` + `\ ` + `KD: ` + `${killfeed[i].kd}`);
-							embed.addField(userNames, Pstats);
-						}
-					}
-					message.channel.send(embed);
-				})
 		break;
 
 		// Clear Messages (Owner and Admin Perms Only )
@@ -413,7 +312,7 @@ bot.on('message', async message=> {
 													.setColor(0xDD0000)
 													.setTitle('K1llFeed Notification')
 													.setDescription(`${f0} **${f1}** Killed **${f2}** ${f3} `)
-													message.channel.send(embed);//.then (message => message.delete({ timeout: 180000, }));
+													message.channel.send(embed).then (message => message.delete({ timeout: 180000, }));
 													console.log(`Kill Time-Stamp: ${dt}`);
 													tRef = dt0;
 													//Increases kill count of killer record
@@ -553,7 +452,7 @@ bot.on('message', async message=> {
 													.setColor(0xDD0000)
 													.setTitle('K1llFeed Notification')
 													.setDescription(`${f0} **${f1}** Killed **${f2}** ${f3} `)
-													message.channel.send(embed);//.then (message => message.delete({ timeout: 180000, }));
+													message.channel.send(embed).then (message => message.delete({ timeout: 180000, }));
 													console.log(`Kill Time-Stamp: ${dt}`);
 													tRef = dt0;
 													//Increases kill count of killer record
@@ -678,7 +577,7 @@ bot.on('message', async message=> {
 												.setColor(0xDD0000)
 												.setTitle('K1llFeed Notification')
 												.setDescription(`${f0} **${f1}** Killed **${f2}** ${f3} `)
-												message.channel.send(embed);//.then (message => message.delete({ timeout: 180000, }));
+												message.channel.send(embed).then (message => message.delete({ timeout: 180000, }));
 												console.log(`Kill Time-Stamp: ${dt}`);
 												tRef = dt0;
 											}
@@ -729,7 +628,7 @@ bot.on('message', async message=> {
 												.setColor(0xDD0000)
 												.setTitle('K1llFeed Notification')
 												.setDescription(`${f0} **${f1}** was ${f2}`)
-												message.channel.send(embed);//.then (message => message.delete({ timeout: 180000, }));
+												message.channel.send(embed).then (message => message.delete({ timeout: 180000, }));
 												console.log(`Kill Time-Stamp: ${dt}`);
 												tRef = dt0;
 											}
